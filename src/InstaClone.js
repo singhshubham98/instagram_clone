@@ -5,7 +5,15 @@
  */
 
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Image, Dimensions} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  Dimensions,
+  TouchableOpacity,
+} from 'react-native';
+import config from './config';
 class InstaClone extends Component {
   state = {
     screenWidth: Dimensions.get('window').width,
@@ -32,7 +40,7 @@ class InstaClone extends Component {
       },
       userBar: {
         width: this.state.screenWidth,
-        height: 50,
+        height: config.styleConstants.rowHeight,
         backgroundColor: 'rgb(255,255,255)',
         flexDirection: 'row',
         paddingHorizontal: 10,
@@ -42,6 +50,18 @@ class InstaClone extends Component {
         width: 40,
         height: 40,
         borderRadius: 20,
+      },
+      iconBar: {
+        height: config.styleConstants.rowHeight,
+        width: this.state.screenWidth,
+        borderColor: 'rgb(233,233,233)',
+        borderBottomWidth: StyleSheet.hairlineWidth,
+        borderTopWidth: StyleSheet.hairlineWidth,
+        flexDirection: 'row',
+        alignItems: 'center',
+      },
+      icon: {
+        marginLeft: 5,
       },
     });
 
@@ -65,13 +85,35 @@ class InstaClone extends Component {
             <Text style={{fontSize: 25}}>...</Text>
           </View>
         </View>
-        <Image
-          style={styles.image}
-          source={{
-            uri:
-              'https://lh3.googleusercontent.com/PWtO3xTlv1ucFUvX4LCFe0eTqjtGl_kxBPNPVF6HezrHud1kmGovelSNp0nNiftO3iq2Z38JDfO6kQ_fg-XXiHzn0wE',
-          }}
-        />
+        <TouchableOpacity
+          onPress={() => {
+            alert('Press');
+          }}>
+          <Image
+            style={styles.image}
+            source={{
+              uri:
+                'https://lh3.googleusercontent.com/PWtO3xTlv1ucFUvX4LCFe0eTqjtGl_kxBPNPVF6HezrHud1kmGovelSNp0nNiftO3iq2Z38JDfO6kQ_fg-XXiHzn0wE',
+            }}
+          />
+        </TouchableOpacity>
+        <View style={styles.iconBar}>
+          <Image
+            source={config.images.heartIcon}
+            style={[
+              styles.icon,
+              {width: 45, height: 45, tintColor: 'rgb(252, 61,57)'},
+            ]}
+          />
+          <Image
+            source={config.images.chatIcon}
+            style={[styles.icon, {width: 36, height: 34}]}
+          />
+          <Image
+            source={config.images.arrowIcon}
+            style={[styles.icon, {width: 36, height: 36}]}
+          />
+        </View>
       </View>
     );
   }
