@@ -3,15 +3,35 @@
  * instaClone.js
  * Author - Shubham Singh
  */
+import {MainFeed, Login, Camera, Profile, Register} from './components/screens';
+import {createSwitchNavigator, createAppContainer} from 'react-navigation';
+import {createBottomTabNavigator} from 'react-navigation-tabs';
+import {createStackNavigator} from 'react-navigation-stack';
 
-import React, {Component} from 'react';
-import {MainFeed, Login} from './components/screens';
-import {createSwitchNavigator} from 'react-navigation';
+const Tabs = createBottomTabNavigator({
+  feed: MainFeed,
+  camera: Camera,
+  profile: Profile,
+});
 
-class InstaClone extends Component {
-  render() {
-    return <MainFeed />;
-  }
-}
+const Stacks = createStackNavigator({
+  login: {
+    screen: Login,
+    navigationOptions: navigation => ({
+      headerShown: false,
+    }),
+  },
+  register: {
+    screen: Register,
+    navigationOptions: navigation => ({
+      headerBackTitle: 'Login',
+    }),
+  },
+});
 
-export default InstaClone;
+const InstaClone = createSwitchNavigator({
+  intro: Stacks,
+  main: Tabs,
+});
+
+export default createAppContainer(InstaClone);

@@ -1,0 +1,22 @@
+ {
+    defaultNavigationOptions: ({navigation}) => ({
+      tabBarIcon: ({color, size}) => {
+        const {routeName} = navigation.state;
+        let iconName, iconType;
+        if (routeName === 'feed') {
+          (iconName = 'ios-add-circle-outline'), (iconType = 'Ionicons');
+        } else if (routeName === 'camera') {
+          (iconName = 'ios-map'), (iconType = 'Ionicons');
+        } else {
+          (iconName = 'ios-person'), (iconType = 'Ionicons');
+        }
+        return (
+          <Icon name={iconName} type={iconType} size={size} color={color} />
+        );
+      },
+    }),
+    tabBarOptions: {
+      activeTintColor: 'tomato',
+      inactiveTintColor: 'gray',
+    },
+  },

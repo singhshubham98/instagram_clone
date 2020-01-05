@@ -5,10 +5,16 @@
  */
 
 import React from 'react';
+import {View, StatusBar} from 'react-native';
 import InstaClone from './src/InstaClone';
 
 const App = () => {
-  return <InstaClone />;
+  return (
+    <View style={{flex: 1}}>
+      <StatusBar barStyle="dark-content" />
+      <InstaClone />
+    </View>
+  );
 };
 
 export default App;
